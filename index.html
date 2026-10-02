@@ -4,45 +4,108 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#7c3aed">
-  <title>Soirée de Julien</title>
+  <title>Les 30 ans de Paul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="hero">
-    <div class="overlay">
+    <nav class="topbar">
+      <div class="brand">Paul 30</div>
+      <div class="status-pill" id="guest-badge">Invitation</div>
+    </nav>
+
+    <div class="hero-content">
       <p class="eyebrow">Vous êtes invité(e)</p>
-      <h1>Soirée de Julien</h1>
-      <p class="subtitle">Samedi 15 mai 2027 à 18 h 00</p>
+      <h1>Les 30 ans de Paul</h1>
+      <p class="subtitle">Samedi 15 mai 2027 • 18 h 30 • Paris</p>
+
       <div id="countdown" class="countdown" aria-live="polite"></div>
-      <a class="btn" href="#infos">Voir les informations</a>
+
+      <div class="cta-row">
+        <a class="btn primary" href="#rsvp">Répondre</a>
+        <a class="btn secondary" href="#infos">Programme</a>
+      </div>
     </div>
   </header>
 
   <main>
-    <section id="infos" class="section">
-      <h2>Informations</h2>
+    <section class="intro-section">
+      <div class="welcome-card" id="guest-card">
+        <p class="guest-label">Bienvenue</p>
+        <h2 id="guest-name">Invité(e)</h2>
+        <p id="guest-status">Nous avons bien reconnu votre invitation.</p>
+      </div>
+    </section>
+
+    <section id="infos" class="section info-section">
+      <div class="section-heading">
+        <p class="eyebrow dark">Informations</p>
+        <h2>Une soirée à ne pas manquer</h2>
+      </div>
+
       <div class="cards">
-        <article class="card"><span class="icon">📍</span><h3>Adresse</h3><p>123 rue de la Fête<br>62400 Béthune</p></article>
-        <article class="card"><span class="icon">🍹</span><h3>Programme</h3><p>Apéritif, barbecue, musique et soirée dansante.</p></article>
-        <article class="card"><span class="icon">👔</span><h3>Dress code</h3><p>Tenue décontractée chic.</p></article>
+        <article class="card">
+          <span class="icon">📍</span>
+          <h3>Adresse</h3>
+          <p>12 rue des Fêtes<br>75001 Paris</p>
+        </article>
+
+        <article class="card">
+          <span class="icon">🎉</span>
+          <h3>Programme</h3>
+          <p>Accueil, cocktails, dîner, animations et soirée dansante jusqu'au bout de la nuit.</p>
+        </article>
+
+        <article class="card">
+          <span class="icon">👔</span>
+          <h3>Dress code</h3>
+          <p>Chic décontracté. La tenue idéale pour une belle soirée entre amis.</p>
+        </article>
       </div>
     </section>
 
     <section id="rsvp" class="section rsvp-section">
       <div class="rsvp-box">
         <p class="eyebrow dark">Réponse souhaitée</p>
-        <h2>Seras-tu présent(e) ?</h2>
-        <p class="rsvp-intro">Cette version de test affiche seulement une confirmation. L’enregistrement des réponses sera ajouté ensuite.</p>
-        <div class="buttons">
-          <button class="answer yes" type="button" data-answer="present">Je serai présent(e)</button>
-          <button class="answer no" type="button" data-answer="absent">Je ne pourrai pas venir</button>
-        </div>
-        <p id="response-message" class="response-message" aria-live="polite"></p>
+        <h2>Confirme ta présence</h2>
+        <p class="rsvp-intro">Cette version est prête pour le test, avec reconnaissance automatique de l'invité et formulaire élégant.</p>
+
+        <form id="rsvp-form" class="rsvp-form">
+          <div class="field-group">
+            <label class="field-label">Ma réponse</label>
+            <div class="choice-row" role="group" aria-label="Choisir une réponse">
+              <button type="button" class="answer-button active" data-answer="present">Oui, je viens</button>
+              <button type="button" class="answer-button" data-answer="absent">Non, je ne peux pas</button>
+            </div>
+            <input type="hidden" id="attendance" name="attendance" value="present">
+          </div>
+
+          <div class="field-grid">
+            <label>
+              Nombre de personnes
+              <input id="guest-count" name="guestCount" type="number" min="1" max="2" value="1">
+            </label>
+
+            <label>
+              Message pour Paul
+              <textarea id="message" name="message" rows="4" placeholder="Un mot, un vœu, un message..."></textarea>
+            </label>
+          </div>
+
+          <button type="submit" class="submit-btn">Envoyer ma réponse</button>
+          <p id="response-message" class="response-message" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
 
-  <footer><p>Hâte de vous retrouver pour faire la fête !</p></footer>
+  <footer>
+    <p>Hâte de vous retrouver pour célébrer cette soirée inoubliable !</p>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
