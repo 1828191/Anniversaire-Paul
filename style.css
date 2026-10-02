@@ -12,7 +12,6 @@
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -181,6 +180,12 @@ body {
   transition: all 0.3s ease;
 }
 
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
 .info-card:active {
   transform: scale(0.98);
   background: var(--bg-light);
@@ -264,7 +269,7 @@ body {
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,6 +277,17 @@ body {
   font-family: inherit;
   min-height: 56px;
   touch-action: manipulation;
+  outline: none;
+}
+
+.toggle-btn:hover {
+  border-color: var(--primary);
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.toggle-btn:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
 }
 
 .toggle-btn:active {
@@ -279,10 +295,15 @@ body {
 }
 
 .toggle-btn.active {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  background: var(--primary) !important;
+  color: white !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+.toggle-btn.active:hover {
+  background: #6d28d9 !important;
+  border-color: #6d28d9 !important;
 }
 
 .toggle-icon {
@@ -304,7 +325,7 @@ body {
 .stepper-btn {
   width: 48px;
   height: 48px;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 8px;
   background: var(--primary);
   color: white;
@@ -318,9 +339,21 @@ body {
   justify-content: center;
   font-family: inherit;
   touch-action: manipulation;
+  outline: none;
 }
 
-.stepper-btn:active {
+.stepper-btn:hover:not(:disabled) {
+  background: #6d28d9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.stepper-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.stepper-btn:active:not(:disabled) {
   transform: scale(0.9);
 }
 
@@ -364,6 +397,11 @@ body {
   resize: vertical;
   min-height: 90px;
   transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-textarea:hover {
+  border-color: var(--primary);
 }
 
 .form-textarea:focus {
@@ -392,9 +430,21 @@ body {
   font-family: inherit;
   min-height: 56px;
   touch-action: manipulation;
+  outline: none;
 }
 
-.submit-btn:active {
+.submit-btn:hover:not(:disabled) {
+  background: #6d28d9;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(124, 58, 237, 0.4);
+}
+
+.submit-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.submit-btn:active:not(:disabled) {
   transform: scale(0.98);
 }
 
@@ -408,9 +458,8 @@ body {
   text-align: center;
   font-weight: 700;
   font-size: 0.95rem;
-  animation: slideUp 0.4s ease-out;
   opacity: 0;
-  animation-fill-mode: forwards;
+  animation: slideUp 0.4s ease-out forwards;
 }
 
 .response-message.success {
@@ -449,10 +498,22 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: inherit;
+  outline: none;
 }
 
 .admin-btn:last-child {
   margin-bottom: 0;
+}
+
+.admin-btn:hover {
+  background: #d97706;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.admin-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
 }
 
 .admin-btn:active {
@@ -463,6 +524,11 @@ body {
   background: white;
   color: #f59e0b;
   border: 2px solid #f59e0b;
+}
+
+.admin-btn.secondary:hover {
+  background: #f59e0b;
+  color: white;
 }
 
 footer {
@@ -493,6 +559,30 @@ footer {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    padding: 40px 20px;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .rsvp-card {
+    padding: 40px;
+  }
+
+  .toggle-group {
+    gap: 16px;
+  }
+
+  .toggle-btn {
+    padding: 18px 24px;
+    font-size: 1rem;
   }
 }
 

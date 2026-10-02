@@ -10,26 +10,33 @@ const TARGET_DATE = new Date("2027-05-15T18:30:00+02:00");
 const STORAGE_KEY = "paul-anniversary-responses";
 
 // ============ DOM ELEMENTS ============
-const countdownEl = document.getElementById("countdown");
-const guestNameEl = document.getElementById("guest-name");
-const guestStatusEl = document.getElementById("guest-status");
-const guestCountEl = document.getElementById("guest-count");
-const maxGuestsTextEl = document.getElementById("max-guests-text");
-const attendanceEl = document.getElementById("attendance");
-const messageEl = document.getElementById("message");
-const responseMessageEl = document.getElementById("response-message");
-const form = document.getElementById("rsvp-form");
-const toggleBtns = document.querySelectorAll(".toggle-btn");
-const minusBtn = document.getElementById("minus-btn");
-const plusBtn = document.getElementById("plus-btn");
-const submitBtn = document.querySelector(".submit-btn");
-const exportBtn = document.getElementById("export-btn");
-const viewBtn = document.getElementById("view-btn");
-const clearBtn = document.getElementById("clear-btn");
-const adminSection = document.getElementById("admin-section");
+let countdownEl, guestNameEl, guestStatusEl, guestCountEl, maxGuestsTextEl;
+let attendanceEl, messageEl, responseMessageEl, form, toggleBtns;
+let minusBtn, plusBtn, submitBtn, exportBtn, viewBtn, clearBtn, adminSection;
+
+function initDOM() {
+  countdownEl = document.getElementById("countdown");
+  guestNameEl = document.getElementById("guest-name");
+  guestStatusEl = document.getElementById("guest-status");
+  guestCountEl = document.getElementById("guest-count");
+  maxGuestsTextEl = document.getElementById("max-guests-text");
+  attendanceEl = document.getElementById("attendance");
+  messageEl = document.getElementById("message");
+  responseMessageEl = document.getElementById("response-message");
+  form = document.getElementById("rsvp-form");
+  toggleBtns = document.querySelectorAll(".toggle-btn");
+  minusBtn = document.getElementById("minus-btn");
+  plusBtn = document.getElementById("plus-btn");
+  submitBtn = document.querySelector(".submit-btn");
+  exportBtn = document.getElementById("export-btn");
+  viewBtn = document.getElementById("view-btn");
+  clearBtn = document.getElementById("clear-btn");
+  adminSection = document.getElementById("admin-section");
+}
 
 // ============ COUNTDOWN ============
 function updateCountdown() {
+  if (!countdownEl) return;
   const now = Date.now();
   const diff = TARGET_DATE.getTime() - now;
 
@@ -46,9 +53,6 @@ function updateCountdown() {
   countdownEl.textContent = `${days}j · ${hours}h · ${minutes}m · ${seconds}s`;
 }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
 // ============ GUEST RECOGNITION ============
 function getGuestIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
@@ -64,6 +68,7 @@ function initializeGuest() {
     guestNameEl.textContent = guest.name;
     guestStatusEl.textContent = `Bienvenue ${guest.name} ! Nous avons bien reçu votre invitation.`;
     guestCountEl.max = guest.maxGuests;
+    guestCountEl.value = 1;
     maxGuestsTextEl.textContent = `Max ${guest.maxGuests} ${guest.maxGuests > 1 ? "personnes" : "personne"}`;
   } else {
     guestNameEl.textContent = "Invité(e)";
@@ -71,82 +76,103 @@ function initializeGuest() {
   }
 }
 
-// ============ TOGGLE BUTTONS ============
-toggleBtns.forEach(btn => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    toggleBtns.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    attendanceEl.value = btn.dataset.answer;
+// ============ TOGGLE BUTTONS - SETUP ============
+function setupToggleButtons() {
+  toggleBtns.forEach(btn => {
+    btn.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Remove active from all
+      toggleBtns.forEach(b => b.classList.remove("active"));
+      
+      // Add active to clicked
+      this.classList.add("active");
+      
+      // Update hidden input
+      attendanceEl.value = this.dataset.answer;
+      
+      console.log("Toggle clicked:", this.dataset.answer);
+    });
   });
-});
+}
 
 // ============ STEPPER ============
 function updateStepperButtons() {
+  if (!guestCountEl || !minusBtn || !plusBtn) return;
+  
   const current = parseInt(guestCountEl.value);
   const max = parseInt(guestCountEl.max);
+  
   minusBtn.disabled = current <= 1;
   plusBtn.disabled = current >= max;
 }
 
-minusBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  const current = parseInt(guestCountEl.value);
-  if (current > 1) {
-    guestCountEl.value = current - 1;
-    updateStepperButtons();
-  }
-});
+function setupStepper() {
+  minusBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const current = parseInt(guestCountEl.value);
+    if (current > 1) {
+      guestCountEl.value = current - 1;
+      updateStepperButtons();
+      console.log("Minus clicked, value:", guestCountEl.value);
+    }
+  });
 
-plusBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  const current = parseInt(guestCountEl.value);
-  const max = parseInt(guestCountEl.max);
-  if (current < max) {
-    guestCountEl.value = current + 1;
-    updateStepperButtons();
-  }
-});
+  plusBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const current = parseInt(guestCountEl.value);
+    const max = parseInt(guestCountEl.max);
+    if (current < max) {
+      guestCountEl.value = current + 1;
+      updateStepperButtons();
+      console.log("Plus clicked, value:", guestCountEl.value);
+    }
+  });
 
-guestCountEl.addEventListener("change", updateStepperButtons);
+  guestCountEl.addEventListener("change", updateStepperButtons);
+}
 
 // ============ FORM SUBMISSION ============
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+function setupFormSubmission() {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("Form submitted");
 
-  const response = {
-    id: window.currentGuestId,
-    name: guestNameEl.textContent,
-    attendance: attendanceEl.value === "present" ? "Oui" : "Non",
-    guestCount: parseInt(guestCountEl.value),
-    message: messageEl.value.trim() || "-",
-    timestamp: new Date().toLocaleString("fr-FR", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit"
-    })
-  };
+    const response = {
+      id: window.currentGuestId,
+      name: guestNameEl.textContent,
+      attendance: attendanceEl.value === "present" ? "Oui" : "Non",
+      guestCount: parseInt(guestCountEl.value),
+      message: messageEl.value.trim() || "-",
+      timestamp: new Date().toLocaleString("fr-FR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      })
+    };
 
-  saveResponse(response);
+    saveResponse(response);
 
-  const attendanceMsg = attendanceEl.value === "present"
-    ? "Merci pour ta présence ! On se voit le 15 mai 🎉"
-    : "Merci pour ta réponse, on comprend ! Peut-être une prochaine fois 😊";
+    const attendanceMsg = attendanceEl.value === "present"
+      ? "Merci pour ta présence ! On se voit le 15 mai 🎉"
+      : "Merci pour ta réponse, on comprend ! Peut-être une prochaine fois 😊";
 
-  responseMessageEl.textContent = attendanceMsg;
-  responseMessageEl.classList.add("success");
+    responseMessageEl.textContent = attendanceMsg;
+    responseMessageEl.classList.add("success");
 
-  form.querySelectorAll("input, textarea, button").forEach(el => {
-    if (el !== submitBtn) el.disabled = true;
+    form.querySelectorAll("input, textarea, button").forEach(el => {
+      if (el !== submitBtn) el.disabled = true;
+    });
+    submitBtn.textContent = "✓ Réponse enregistrée";
+    submitBtn.disabled = true;
+
+    console.log("✅ Réponse enregistrée :", response);
   });
-  submitBtn.textContent = "✓ Réponse enregistrée";
-  submitBtn.disabled = true;
-
-  console.log("✅ Réponse enregistrée :", response);
-});
+}
 
 // ============ STORAGE ============
 function saveResponse(response) {
@@ -160,6 +186,7 @@ function saveResponse(response) {
   }
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(responses));
+  console.log("Responses saved:", responses);
 }
 
 function getResponses() {
@@ -234,25 +261,45 @@ function clearAllData() {
   }
 }
 
-// ============ EVENT LISTENERS ============
-exportBtn.addEventListener("click", exportToCSV);
-viewBtn.addEventListener("click", showResponses);
-clearBtn.addEventListener("click", clearAllData);
+// ============ ADMIN SETUP ============
+function setupAdmin() {
+  if (exportBtn) exportBtn.addEventListener("click", exportToCSV);
+  if (viewBtn) viewBtn.addEventListener("click", showResponses);
+  if (clearBtn) clearBtn.addEventListener("click", clearAllData);
 
-function checkAdminPanel() {
   const responses = getResponses();
-  if (responses.length > 0) {
+  if (responses.length > 0 && adminSection) {
     adminSection.style.display = "block";
   }
 }
 
 // ============ INIT ============
-document.addEventListener("DOMContentLoaded", () => {
+function init() {
+  console.log("🚀 Initializing...");
+  
+  initDOM();
   initializeGuest();
+  updateCountdown();
+  setupToggleButtons();
+  setupStepper();
+  setupFormSubmission();
+  setupAdmin();
   updateStepperButtons();
-  checkAdminPanel();
-
+  
+  // Global exports
   window.showResponses = showResponses;
   window.exportToCSV = exportToCSV;
   window.clearAllData = clearAllData;
-});
+  
+  console.log("✅ App initialized");
+}
+
+// Start countdown
+setInterval(updateCountdown, 1000);
+
+// Wait for DOM
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
