@@ -1,45 +1,55 @@
-// Base de données invités
-const guests = {
-  "001": {
-    name: "Jean Dupont",
-    maxGuests: 2
-  },
-  "002": {
-    name: "Marie Martin",
-    maxGuests: 1
-  },
-  "003": {
-    name: "Paul Thompson",
-    maxGuests: 3
-  },
-  "004": {
-    name: "Sophie Blanc",
-    maxGuests: 2
-  }
+// ============ CONFIG ============
+const GUESTS = {
+  "001": { name: "Jean Dupont", maxGuests: 2 },
+  "002": { name: "Marie Martin", maxGuests: 1 },
+  "003": { name: "Paul Thompson", maxGuests: 3 },
+  "004": { name: "Sophie Blanc", maxGuests: 2 }
 };
 
-// Countdown timer
-const targetDate = new Date("2027-05-15T18:00:00+02:00");
-const countdownElement = document.getElementById("countdown");
+const TARGET_DATE = new Date("2027-05-15T18:30:00+02:00");
+const STORAGE_KEY = "paul-anniversary-responses";
 
+// ============ DOM ELEMENTS ============
+const countdownEl = document.getElementById("countdown");
+const guestNameEl = document.getElementById("guest-name");
+const guestStatusEl = document.getElementById("guest-status");
+const guestCountEl = document.getElementById("guest-count");
+const maxGuestsTextEl = document.getElementById("max-guests-text");
+const attendanceEl = document.getElementById("attendance");
+const messageEl = document.getElementById("message");
+const responseMessageEl = document.getElementById("response-message");
+const form = document.getElementById("rsvp-form");
+const toggleBtns = document.querySelectorAll(".toggle-btn");
+const minusBtn = document.getElementById("minus-btn");
+const plusBtn = document.getElementById("plus-btn");
+const submitBtn = document.querySelector(".submit-btn");
+const exportBtn = document.getElementById("export-btn");
+const viewBtn = document.getElementById("view-btn");
+const clearBtn = document.getElementById("clear-btn");
+const adminSection = document.getElementById("admin-section");
+
+// ============ COUNTDOWN ============
 function updateCountdown() {
-  const difference = targetDate.getTime() - Date.now();
-  if (difference <= 0) {
-    countdownElement.textContent = "La fête a commencé !";
+  const now = Date.now();
+  const diff = TARGET_DATE.getTime() - now;
+
+  if (diff <= 0) {
+    countdownEl.textContent = "La fête a commencé ! 🎉";
     return;
   }
-  const day = 86400000, hour = 3600000, minute = 60000;
-  const days = Math.floor(difference / day);
-  const hours = Math.floor((difference % day) / hour);
-  const minutes = Math.floor((difference % hour) / minute);
-  const seconds = Math.floor((difference % minute) / 1000);
-  countdownElement.textContent = `${days}j · ${hours}h · ${minutes}min · ${seconds}s`;
+
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const minutes = Math.floor((diff % 3600000) / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+
+  countdownEl.textContent = `${days}j · ${hours}h · ${minutes}m · ${seconds}s`;
 }
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// Reconnaissance invité via URL
+// ============ GUEST RECOGNITION ============
 function getGuestIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
   return params.get("guest");
@@ -47,107 +57,132 @@ function getGuestIdFromUrl() {
 
 function initializeGuest() {
   const guestId = getGuestIdFromUrl();
-  const guestNameEl = document.getElementById("guest-name");
-  const guestStatusEl = document.getElementById("guest-status");
-  const guestCountField = document.getElementById("guest-count");
+  window.currentGuestId = guestId || "UNKNOWN";
 
-  if (guestId && guests[guestId]) {
-    const guest = guests[guestId];
+  if (guestId && GUESTS[guestId]) {
+    const guest = GUESTS[guestId];
     guestNameEl.textContent = guest.name;
-    guestStatusEl.textContent = `Bienvenue ${guest.name} ! Nous avons reconnu votre invitation.`;
-    guestCountField.max = guest.maxGuests;
-    
-    // Stockage de l'ID pour le formulaire
-    window.currentGuestId = guestId;
+    guestStatusEl.textContent = `Bienvenue ${guest.name} ! Nous avons bien reçu votre invitation.`;
+    guestCountEl.max = guest.maxGuests;
+    maxGuestsTextEl.textContent = `Max ${guest.maxGuests} ${guest.maxGuests > 1 ? "personnes" : "personne"}`;
   } else {
     guestNameEl.textContent = "Invité(e)";
-    guestStatusEl.textContent = "Merci de scanner votre QR code pour accéder à votre invitation.";
+    guestStatusEl.textContent = "Veuillez scanner votre QR code pour accéder à votre invitation.";
   }
 }
 
-// Gestion du formulaire RSVP
-const rsvpForm = document.getElementById("rsvp-form");
-const answerButtons = document.querySelectorAll(".answer-button");
-const responseMessage = document.getElementById("response-message");
-
-// Toggle réponse Oui/Non
-answerButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    answerButtons.forEach(b => b.classList.remove("active"));
-    button.classList.add("active");
-    document.getElementById("attendance").value = button.dataset.answer;
+// ============ TOGGLE BUTTONS ============
+toggleBtns.forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    attendanceEl.value = btn.dataset.answer;
   });
 });
 
-// Soumission du formulaire
-rsvpForm.addEventListener("submit", (e) => {
+// ============ STEPPER ============
+function updateStepperButtons() {
+  const current = parseInt(guestCountEl.value);
+  const max = parseInt(guestCountEl.max);
+  minusBtn.disabled = current <= 1;
+  plusBtn.disabled = current >= max;
+}
+
+minusBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const current = parseInt(guestCountEl.value);
+  if (current > 1) {
+    guestCountEl.value = current - 1;
+    updateStepperButtons();
+  }
+});
+
+plusBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const current = parseInt(guestCountEl.value);
+  const max = parseInt(guestCountEl.max);
+  if (current < max) {
+    guestCountEl.value = current + 1;
+    updateStepperButtons();
+  }
+});
+
+guestCountEl.addEventListener("change", updateStepperButtons);
+
+// ============ FORM SUBMISSION ============
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const guestId = window.currentGuestId || "UNKNOWN";
-  const guestName = document.getElementById("guest-name").textContent;
-  const attendance = document.getElementById("attendance").value;
-  const guestCount = document.getElementById("guest-count").value;
-  const message = document.getElementById("message").value;
-  const timestamp = new Date().toLocaleString("fr-FR");
-
-  // Créer l'objet réponse
   const response = {
-    id: guestId,
-    name: guestName,
-    attendance: attendance === "present" ? "Oui" : "Non",
-    guestCount: guestCount,
-    message: message || "-",
-    timestamp: timestamp
+    id: window.currentGuestId,
+    name: guestNameEl.textContent,
+    attendance: attendanceEl.value === "present" ? "Oui" : "Non",
+    guestCount: parseInt(guestCountEl.value),
+    message: messageEl.value.trim() || "-",
+    timestamp: new Date().toLocaleString("fr-FR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    })
   };
 
-  // Sauvegarder en localStorage
-  saveResponseToStorage(response);
+  saveResponse(response);
 
-  // Afficher confirmation
-  const attendanceText = attendance === "present" ? "Merci pour ta présence !" : "Merci de ta réponse !";
-  responseMessage.textContent = `${attendanceText} Tes réponses sont enregistrées.`;
-  responseMessage.classList.add("success");
+  const attendanceMsg = attendanceEl.value === "present"
+    ? "Merci pour ta présence ! On se voit le 15 mai 🎉"
+    : "Merci pour ta réponse, on comprend ! Peut-être une prochaine fois 😊";
 
-  // Désactiver le formulaire
-  rsvpForm.querySelectorAll("input, textarea, button").forEach(el => {
-    if (el !== responseMessage) el.disabled = true;
+  responseMessageEl.textContent = attendanceMsg;
+  responseMessageEl.classList.add("success");
+
+  form.querySelectorAll("input, textarea, button").forEach(el => {
+    if (el !== submitBtn) el.disabled = true;
   });
+  submitBtn.textContent = "✓ Réponse enregistrée";
+  submitBtn.disabled = true;
 
-  console.log("Réponse enregistrée :", response);
+  console.log("✅ Réponse enregistrée :", response);
 });
 
-// Sauvegarde en localStorage
-function saveResponseToStorage(response) {
-  let responses = JSON.parse(localStorage.getItem("paul-anniversary-responses") || "[]");
-  
-  // Vérifier si c'est une mise à jour
+// ============ STORAGE ============
+function saveResponse(response) {
+  let responses = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+
   const existingIndex = responses.findIndex(r => r.id === response.id);
   if (existingIndex >= 0) {
     responses[existingIndex] = response;
   } else {
     responses.push(response);
   }
-  
-  localStorage.setItem("paul-anniversary-responses", JSON.stringify(responses));
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(responses));
 }
 
-// Export en CSV
+function getResponses() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+}
+
+// ============ EXPORT CSV ============
 function exportToCSV() {
-  const responses = JSON.parse(localStorage.getItem("paul-anniversary-responses") || "[]");
-  
+  const responses = getResponses();
+
   if (responses.length === 0) {
     alert("Aucune réponse enregistrée pour le moment.");
     return;
   }
 
-  const headers = ["ID", "Nom", "Présence", "Nombre de personnes", "Message", "Date/Heure"];
+  const headers = ["ID", "Nom", "Présence", "Nombre de personnes", "Message", "Date"];
   const rows = responses.map(r => [
     r.id,
-    r.name,
+    `"${r.name}"`,
     r.attendance,
     r.guestCount,
-    `"${r.message.replace(/"/g, '""')}"`, // Échapper les guillemets
-    r.timestamp
+    `"${r.message.replace(/"/g, '""')}"`
+  , r.timestamp
   ]);
 
   const csv = [
@@ -155,29 +190,69 @@ function exportToCSV() {
     ...rows.map(r => r.join(";"))
   ].join("\n");
 
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const BOM = "\uFEFF";
+  const blob = new Blob([BOM + csv], { type: "text/csv;charset=utf-8;" });
+
   const link = document.createElement("a");
   const url = URL.createObjectURL(blob);
-  
+  const date = new Date().toISOString().split("T")[0];
+
   link.setAttribute("href", url);
-  link.setAttribute("download", `anniversaire-paul-responses-${new Date().toISOString().split('T')[0]}.csv`);
+  link.setAttribute("download", `anniversaire-paul-${date}.csv`);
   link.style.visibility = "hidden";
-  
+
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+
+  console.log(`📥 CSV téléchargé avec ${responses.length} réponse(s)`);
 }
 
-// Debug: afficher les réponses en console
+// ============ DEBUG FUNCTIONS ============
 function showResponses() {
-  const responses = JSON.parse(localStorage.getItem("paul-anniversary-responses") || "[]");
-  console.log("Réponses enregistrées :", responses);
+  const responses = getResponses();
+  console.log("📋 Réponses enregistrées :", responses);
+
+  if (responses.length > 0) {
+    const presents = responses.filter(r => r.attendance === "Oui").length;
+    const absents = responses.filter(r => r.attendance === "Non").length;
+    const totalPeople = responses.reduce((sum, r) => sum + r.guestCount, 0);
+
+    console.log(`Présents: ${presents}`);
+    console.log(`Absents: ${absents}`);
+    console.log(`Total de personnes: ${totalPeople}`);
+  }
+
   return responses;
 }
 
-// Initialiser au chargement
-document.addEventListener("DOMContentLoaded", initializeGuest);
+function clearAllData() {
+  if (confirm("⚠️ Êtes-vous sûr de vouloir effacer TOUTES les réponses ?")) {
+    localStorage.removeItem(STORAGE_KEY);
+    console.log("🗑️ Toutes les données ont été effacées.");
+    location.reload();
+  }
+}
 
-// Export global pour debug en console
-window.exportToCSV = exportToCSV;
-window.showResponses = showResponses;
+// ============ EVENT LISTENERS ============
+exportBtn.addEventListener("click", exportToCSV);
+viewBtn.addEventListener("click", showResponses);
+clearBtn.addEventListener("click", clearAllData);
+
+function checkAdminPanel() {
+  const responses = getResponses();
+  if (responses.length > 0) {
+    adminSection.style.display = "block";
+  }
+}
+
+// ============ INIT ============
+document.addEventListener("DOMContentLoaded", () => {
+  initializeGuest();
+  updateStepperButtons();
+  checkAdminPanel();
+
+  window.showResponses = showResponses;
+  window.exportToCSV = exportToCSV;
+  window.clearAllData = clearAllData;
+});

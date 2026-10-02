@@ -2,8 +2,10 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#7c3aed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Les 30 ans de Paul</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,100 +13,115 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="hero">
-    <nav class="topbar">
-      <div class="brand">Paul 30</div>
-      <div class="status-pill" id="guest-badge">Invitation</div>
-    </nav>
-
-    <div class="hero-content">
-      <p class="eyebrow">Vous êtes invité(e)</p>
-      <h1>Les 30 ans de Paul</h1>
-      <p class="subtitle">Samedi 15 mai 2027 • 18 h 30 • Paris</p>
-
-      <div id="countdown" class="countdown" aria-live="polite"></div>
-
-      <div class="cta-row">
-        <a class="btn primary" href="#rsvp">Répondre</a>
-        <a class="btn secondary" href="#infos">Programme</a>
+  <div class="app">
+    <header class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Vous êtes invité(e)</p>
+        <h1>Les 30 ans<br>de Paul</h1>
+        <p class="subtitle">Samedi 15 mai 2027 • 18h30</p>
+        <div id="countdown" class="countdown" aria-live="polite"></div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main>
-    <section class="intro-section">
+    <section class="welcome-section">
       <div class="welcome-card" id="guest-card">
-        <p class="guest-label">Bienvenue</p>
+        <div class="welcome-badge">Bienvenue</div>
         <h2 id="guest-name">Invité(e)</h2>
-        <p id="guest-status">Nous avons bien reconnu votre invitation.</p>
+        <p id="guest-status">Veuillez scanner votre QR code</p>
       </div>
     </section>
 
-    <section id="infos" class="section info-section">
-      <div class="section-heading">
-        <p class="eyebrow dark">Informations</p>
-        <h2>Une soirée à ne pas manquer</h2>
-      </div>
+    <main class="main-content">
+      <section class="quick-info">
+        <h2 class="section-title">Les infos</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-icon">📍</span>
+            <h3>Adresse</h3>
+            <p>12 rue des Fêtes<br>75001 Paris</p>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">🎉</span>
+            <h3>Ambiance</h3>
+            <p>Cocktails, dîner, musique et soirée dansante</p>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">👔</span>
+            <h3>Dress code</h3>
+            <p>Chic décontracté</p>
+          </div>
+        </div>
+      </section>
 
-      <div class="cards">
-        <article class="card">
-          <span class="icon">📍</span>
-          <h3>Adresse</h3>
-          <p>12 rue des Fêtes<br>75001 Paris</p>
-        </article>
+      <section class="rsvp-section">
+        <div class="rsvp-card">
+          <h2>Confirme ta présence</h2>
+          <p class="rsvp-subtitle">Nous avons besoin de savoir si tu viendras</p>
 
-        <article class="card">
-          <span class="icon">🎉</span>
-          <h3>Programme</h3>
-          <p>Accueil, cocktails, dîner, animations et soirée dansante jusqu'au bout de la nuit.</p>
-        </article>
-
-        <article class="card">
-          <span class="icon">👔</span>
-          <h3>Dress code</h3>
-          <p>Chic décontracté. La tenue idéale pour une belle soirée entre amis.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="rsvp" class="section rsvp-section">
-      <div class="rsvp-box">
-        <p class="eyebrow dark">Réponse souhaitée</p>
-        <h2>Confirme ta présence</h2>
-        <p class="rsvp-intro">Cette version est prête pour le test, avec reconnaissance automatique de l'invité et formulaire élégant.</p>
-
-        <form id="rsvp-form" class="rsvp-form">
-          <div class="field-group">
-            <label class="field-label">Ma réponse</label>
-            <div class="choice-row" role="group" aria-label="Choisir une réponse">
-              <button type="button" class="answer-button active" data-answer="present">Oui, je viens</button>
-              <button type="button" class="answer-button" data-answer="absent">Non, je ne peux pas</button>
+          <form id="rsvp-form" class="form">
+            <div class="form-group">
+              <label class="group-label">Seras-tu présent ?</label>
+              <div class="toggle-group" role="group" aria-label="Réponse">
+                <button type="button" class="toggle-btn active" data-answer="present">
+                  <span class="toggle-icon">✓</span>
+                  <span>Oui, je viens</span>
+                </button>
+                <button type="button" class="toggle-btn" data-answer="absent">
+                  <span class="toggle-icon">✗</span>
+                  <span>Non, je ne peux pas</span>
+                </button>
+              </div>
+              <input type="hidden" id="attendance" name="attendance" value="present">
             </div>
-            <input type="hidden" id="attendance" name="attendance" value="present">
-          </div>
 
-          <div class="field-grid">
-            <label>
-              Nombre de personnes
-              <input id="guest-count" name="guestCount" type="number" min="1" max="2" value="1">
-            </label>
+            <div class="form-group">
+              <label class="form-label" for="guest-count">Combien de personnes ?</label>
+              <div class="input-stepper">
+                <button type="button" class="stepper-btn" id="minus-btn">−</button>
+                <input 
+                  type="number" 
+                  id="guest-count" 
+                  name="guestCount" 
+                  value="1" 
+                  min="1" 
+                  max="2" 
+                  readonly
+                  class="stepper-input"
+                >
+                <button type="button" class="stepper-btn" id="plus-btn">+</button>
+              </div>
+              <small class="helper-text" id="max-guests-text">Max 2 personnes</small>
+            </div>
 
-            <label>
-              Message pour Paul
-              <textarea id="message" name="message" rows="4" placeholder="Un mot, un vœu, un message..."></textarea>
-            </label>
-          </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Un message pour Paul ?</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                placeholder="Écris quelque chose de sympa..."
+                class="form-textarea"
+                rows="4"
+              ></textarea>
+            </div>
 
-          <button type="submit" class="submit-btn">Envoyer ma réponse</button>
-          <p id="response-message" class="response-message" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
-  </main>
+            <button type="submit" class="submit-btn">Envoyer ma réponse</button>
+            <p id="response-message" class="response-message" aria-live="polite" aria-atomic="true"></p>
+          </form>
+        </div>
+      </section>
 
-  <footer>
-    <p>Hâte de vous retrouver pour célébrer cette soirée inoubliable !</p>
-  </footer>
+      <section class="admin-section" id="admin-section" style="display: none;">
+        <h2>Zone Admin</h2>
+        <button type="button" class="admin-btn" id="export-btn">📥 Télécharger les réponses (CSV)</button>
+        <button type="button" class="admin-btn secondary" id="view-btn">👁️ Voir les réponses</button>
+        <button type="button" class="admin-btn secondary" id="clear-btn">🗑️ Effacer les données</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>Hâte de vous retrouver pour cette soirée mémorable !</p>
+    </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
