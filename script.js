@@ -1,9 +1,9 @@
 // Config
 const GUESTS = {
-  "001": { name: "Jean Dupont", maxGuests: 2 },
-  "002": { name: "Marie Martin", maxGuests: 1 },
-  "003": { name: "Paul Thompson", maxGuests: 3 },
-  "004": { name: "Sophie Blanc", maxGuests: 2 }
+  "001": { name: "Jean Dupont", maxGuests: 999 },
+  "002": { name: "Marie Martin", maxGuests: 999 },
+  "003": { name: "Paul Thompson", maxGuests: 999 },
+  "004": { name: "Sophie Blanc", maxGuests: 999 }
 };
 
 const TARGET_DATE = new Date("2027-05-15T18:30:00+02:00");
@@ -25,7 +25,7 @@ const plusBtn = document.getElementById("btn-plus");
 const submitBtn = document.querySelector(".btn-submit");
 
 let currentGuestId = "UNKNOWN";
-let maxGuests = 2;
+let maxGuests = 999;
 
 // Countdown
 function updateCountdown() {
@@ -55,7 +55,7 @@ function initGuest() {
     guestStatusEl.textContent = `Bienvenue ${guest.name} ! Vous êtes reconnu(e).`;
     maxGuests = guest.maxGuests;
     guestCountEl.max = maxGuests;
-    maxTextEl.textContent = `Max ${maxGuests} ${maxGuests > 1 ? "personnes" : "personne"}`;
+    maxTextEl.textContent = `Aucune limite`;
   }
 }
 
@@ -83,10 +83,8 @@ minusBtn.addEventListener("click", (e) => {
 plusBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const val = parseInt(guestCountEl.value);
-  if (val < maxGuests) {
-    guestCountEl.value = val + 1;
-    console.log("Count:", guestCountEl.value);
-  }
+  guestCountEl.value = val + 1;
+  console.log("Count:", guestCountEl.value);
 });
 
 // Form submit
@@ -126,10 +124,27 @@ formEl.addEventListener("submit", (e) => {
 // Init
 document.addEventListener("DOMContentLoaded", initGuest);
 
-// Global
-window.getResponses = () => JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+// Global functions for console/admin
+window.getResponses = () => {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  console.log("=== RÉPONSES ENREGISTRÉES ===");
+  console.table(data);
+  
+  const presents = data.filter(r => r.presence === "Oui").length;
+  const absents = data.filter(r => r.presence === "Non").length;
+  const totalPersonnes = data.reduce((sum, r) => sum + r.guests, 0);
+  
+  console.log(`\n🌟 PRÉSENTS: ${presents}`);
+  console.log(`😟 ABSENTS: ${absents}`);
+  console.log(`👨\u200d👩 TOTAL PERSONNES: ${totalPersonnes}\n`);
+  
+  return data;
+};
+
+window.showResponses = window.getResponses; // Alias
+
 window.downloadCSV = () => {
-  const data = window.getResponses();
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
   if (!data.length) { alert("Pas de réponses"); return; }
   const csv = "ID;Nom;Présence;Personnes;Message;Date\n" + 
     data.map(r => `${r.id};${r.name};${r.presence};${r.guests};"${r.message}";${r.date}`).join("\n");
@@ -139,4 +154,20 @@ window.downloadCSV = () => {
   a.href = url;
   a.download = `paul-responses-${new Date().toISOString().split("T")[0]}.csv`;
   a.click();
+  console.log("📥 CSV téléchargé");
 };
+
+window.exportCSV = window.downloadCSV; // Alias
+
+window.clearResponses = () => {
+  if (confirm("⚠️ Effacer TOUTES les réponses ?")) {
+    localStorage.removeItem(STORAGE_KEY);
+    console.log("🗑️ Toutes les données supprimées");
+    location.reload();
+  }
+};
+
+// Show admin tip
+console.log("%c🔐 ZONE ADMIN", "background: #7c3aed; color: white; font-size: 14px; padding: 8px 12px; border-radius: 4px; font-weight: bold;");
+console.log("%cCommandes disponibles:", "color: #7c3aed; font-weight: bold;");
+console.log("%c- getResponses() ou showResponses()\n- downloadCSV() ou exportCSV()\n- clearResponses()", "color: #6b7280; font-family: monospace; font-size: 12px;");
