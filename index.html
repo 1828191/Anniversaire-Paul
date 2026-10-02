@@ -1,128 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#7c3aed">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Les 30 ans de Paul</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anniversaire Paul</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:800px;margin:auto;padding:20px;text-align:center;background:#fafafa}
+.card{background:white;border-radius:12px;padding:30px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+button{padding:12px 24px;margin:10px;border:none;border-radius:8px;cursor:pointer;color:white;font-size:16px}
+.yes{background:#28a745}.no{background:#dc3545}
+input,textarea{width:100%;padding:10px;margin-top:10px;margin-bottom:20px}
+textarea{min-height:100px}
+</style>
 </head>
 <body>
-  <div class="app">
-    <header class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">Vous êtes invité(e)</p>
-        <h1>Les 30 ans<br>de Paul</h1>
-        <p class="subtitle">Samedi 15 mai 2027 • 18h30</p>
-        <div id="countdown" class="countdown" aria-live="polite"></div>
-      </div>
-    </header>
-
-    <section class="welcome-section">
-      <div class="welcome-card" id="guest-card">
-        <div class="welcome-badge">Bienvenue</div>
-        <h2 id="guest-name">Invité(e)</h2>
-        <p id="guest-status">Veuillez scanner votre QR code</p>
-      </div>
-    </section>
-
-    <main class="main-content">
-      <section class="quick-info">
-        <h2 class="section-title">Les infos</h2>
-        <div class="info-grid">
-          <div class="info-card">
-            <span class="info-icon">📍</span>
-            <h3>Adresse</h3>
-            <p>12 rue des Fêtes<br>75001 Paris</p>
-          </div>
-          <div class="info-card">
-            <span class="info-icon">🎉</span>
-            <h3>Ambiance</h3>
-            <p>Cocktails, dîner, musique et soirée dansante</p>
-          </div>
-          <div class="info-card">
-            <span class="info-icon">👔</span>
-            <h3>Dress code</h3>
-            <p>Chic décontracté</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="rsvp-section">
-        <div class="rsvp-card">
-          <h2>Confirme ta présence</h2>
-          <p class="rsvp-subtitle">Nous avons besoin de savoir si tu viendras</p>
-
-          <form id="rsvp-form" class="form">
-            <div class="form-group">
-              <label class="group-label">Seras-tu présent ?</label>
-              <div class="toggle-group" role="group" aria-label="Réponse">
-                <button type="button" class="toggle-btn active" data-answer="present">
-                  <span class="toggle-icon">✓</span>
-                  <span>Oui, je viens</span>
-                </button>
-                <button type="button" class="toggle-btn" data-answer="absent">
-                  <span class="toggle-icon">✗</span>
-                  <span>Non, je ne peux pas</span>
-                </button>
-              </div>
-              <input type="hidden" id="attendance" name="attendance" value="present">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="guest-count">Combien de personnes ?</label>
-              <div class="input-stepper">
-                <button type="button" class="stepper-btn" id="minus-btn">−</button>
-                <input 
-                  type="number" 
-                  id="guest-count" 
-                  name="guestCount" 
-                  value="1" 
-                  min="1" 
-                  max="2" 
-                  readonly
-                  class="stepper-input"
-                >
-                <button type="button" class="stepper-btn" id="plus-btn">+</button>
-              </div>
-              <small class="helper-text" id="max-guests-text">Max 2 personnes</small>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="message">Un message pour Paul ?</label>
-              <textarea 
-                id="message" 
-                name="message" 
-                placeholder="Écris quelque chose de sympa..."
-                class="form-textarea"
-                rows="4"
-              ></textarea>
-            </div>
-
-            <button type="submit" class="submit-btn">Envoyer ma réponse</button>
-            <p id="response-message" class="response-message" aria-live="polite" aria-atomic="true"></p>
-          </form>
-        </div>
-      </section>
-
-      <section class="admin-section" id="admin-section" style="display: none;">
-        <h2>Zone Admin</h2>
-        <button type="button" class="admin-btn" id="export-btn">📥 Télécharger les réponses (CSV)</button>
-        <button type="button" class="admin-btn secondary" id="view-btn">👁️ Voir les réponses</button>
-        <button type="button" class="admin-btn secondary" id="clear-btn">🗑️ Effacer les données</button>
-      </section>
-    </main>
-
-    <footer>
-      <p>Hâte de vous retrouver pour cette soirée mémorable !</p>
-    </footer>
-  </div>
-
-  <script src="script.js"></script>
+<div class="card">
+<h1>🎉 Anniversaire de Paul 🎉</h1>
+<h2 id="guestName">Chargement...</h2>
+<p>Merci de confirmer votre présence.</p>
+<label>Nombre de participants :</label>
+<input type="number" id="guestsCount" min="1" value="1">
+<label>Commentaire :</label>
+<textarea id="comment"></textarea>
+<button class="yes" onclick="reply(true)">Je participe</button>
+<button class="no" onclick="reply(false)">Je ne participe pas</button>
+<div id="result"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
 </body>
 </html>
