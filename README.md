@@ -1,8 +1,18 @@
-# Anniversaire Paul V3
+# Anniversaire Paul V4
 
-1. Exécuter `setup.sql` dans Supabase SQL Editor.
-2. Déposer tous les fichiers à la racine du dépôt GitHub Pages.
-3. Tester `?token=A001X9`.
-4. Consulter `admin.html` pour le tableau de bord.
+Cette version contient :
+- le site d’invitation ;
+- le questionnaire sans limite maximale liée à `max_guests` ;
+- la page `admin.html` avec un design amélioré ;
+- le graphique d’évolution et le tableau détaillé des réponses.
 
-Le tableau de bord est public. La limite `max_guests` n'est plus utilisée par le formulaire.
+## Déploiement
+
+Dépose tous les fichiers du ZIP à la racine du dépôt GitHub Pages puis valide le commit.
+
+## Accès
+
+- Invitation : `?token=V001`, `?token=L001` ou `?token=O001`
+- Tableau de bord : `admin.html`
+
+Le SQL ayant déjà été exécuté, le fichier `setup.sql` est conservé uniquement comme référence.
