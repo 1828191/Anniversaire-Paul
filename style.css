@@ -42,7 +42,6 @@ body {
   min-height: 100svh;
 }
 
-/* ============ HERO ============ */
 .hero {
   position: relative;
   width: 100%;
@@ -109,7 +108,6 @@ body {
   animation: slideUp 0.6s ease-out 0.3s both;
 }
 
-/* ============ WELCOME CARD ============ */
 .welcome-section {
   padding: 20px;
   background: var(--bg-white);
@@ -149,7 +147,6 @@ body {
   font-size: 0.95rem;
 }
 
-/* ============ MAIN CONTENT ============ */
 .main-content {
   flex: 1;
   padding: 24px 20px;
@@ -165,7 +162,6 @@ body {
   color: var(--text-primary);
 }
 
-/* ============ QUICK INFO ============ */
 .quick-info {
   margin-bottom: 32px;
 }
@@ -209,7 +205,6 @@ body {
   line-height: 1.5;
 }
 
-/* ============ RSVP SECTION ============ */
 .rsvp-section {
   margin-bottom: 32px;
 }
@@ -235,7 +230,6 @@ body {
   margin-bottom: 24px;
 }
 
-/* ============ FORM ============ */
 .form {
   display: flex;
   flex-direction: column;
@@ -253,10 +247,8 @@ body {
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 10px;
-  text-transform: none;
 }
 
-/* Toggle Buttons */
 .toggle-group {
   display: flex;
   gap: 10px;
@@ -298,7 +290,6 @@ body {
   font-size: 1.2rem;
 }
 
-/* Stepper Input */
 .input-stepper {
   display: flex;
   align-items: center;
@@ -361,7 +352,6 @@ body {
   text-align: center;
 }
 
-/* Textarea */
 .form-textarea {
   padding: 12px 14px;
   border: 2px solid var(--border-light);
@@ -388,7 +378,6 @@ body {
   opacity: 0.6;
 }
 
-/* Submit Button */
 .submit-btn {
   padding: 16px 20px;
   border: none;
@@ -414,7 +403,6 @@ body {
   cursor: not-allowed;
 }
 
-/* Response Message */
 .response-message {
   min-height: 24px;
   text-align: center;
@@ -433,7 +421,6 @@ body {
   color: var(--error);
 }
 
-/* ============ ADMIN SECTION ============ */
 .admin-section {
   margin-top: 40px;
   padding: 24px;
@@ -478,7 +465,6 @@ body {
   border: 2px solid #f59e0b;
 }
 
-/* ============ FOOTER ============ */
 footer {
   padding: 24px 20px;
   background: var(--text-primary);
@@ -488,7 +474,6 @@ footer {
   margin-top: auto;
 }
 
-/* ============ ANIMATIONS ============ */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -511,10 +496,9 @@ footer {
   }
 }
 
-/* ============ MOBILE OPTIMIZATIONS ============ */
 @media (max-width: 640px) {
   body {
-    font-size: 16px; /* Évite le zoom iOS */
+    font-size: 16px;
   }
 
   .hero {
@@ -534,14 +518,6 @@ footer {
     padding: 20px;
   }
 
-  .info-grid {
-    gap: 10px;
-  }
-
-  .info-card {
-    padding: 14px;
-  }
-
   .toggle-btn {
     min-height: 52px;
     padding: 14px 10px;
@@ -553,7 +529,6 @@ footer {
   }
 }
 
-/* Landscape mobile */
 @media (max-height: 600px) and (orientation: landscape) {
   .hero {
     min-height: 40svh;
@@ -574,10 +549,9 @@ footer {
   }
 }
 
-/* Touch devices */
 @media (hover: none) and (pointer: coarse) {
   button {
-    min-height: 48px; /* iOS minimum touch target */
+    min-height: 48px;
   }
 
   .toggle-btn {
@@ -585,7 +559,6 @@ footer {
   }
 }
 
-/* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -600,7 +573,6 @@ footer {
   }
 }
 
-/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-light: #111827;
