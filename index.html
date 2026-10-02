@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7c3aed">
+  <title>Soirée de Julien</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="overlay">
+      <p class="eyebrow">Vous êtes invité(e)</p>
+      <h1>Soirée de Julien</h1>
+      <p class="subtitle">Samedi 15 mai 2027 à 18 h 00</p>
+      <div id="countdown" class="countdown" aria-live="polite"></div>
+      <a class="btn" href="#infos">Voir les informations</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="infos" class="section">
+      <h2>Informations</h2>
+      <div class="cards">
+        <article class="card"><span class="icon">📍</span><h3>Adresse</h3><p>123 rue de la Fête<br>62400 Béthune</p></article>
+        <article class="card"><span class="icon">🍹</span><h3>Programme</h3><p>Apéritif, barbecue, musique et soirée dansante.</p></article>
+        <article class="card"><span class="icon">👔</span><h3>Dress code</h3><p>Tenue décontractée chic.</p></article>
+      </div>
+    </section>
+
+    <section id="rsvp" class="section rsvp-section">
+      <div class="rsvp-box">
+        <p class="eyebrow dark">Réponse souhaitée</p>
+        <h2>Seras-tu présent(e) ?</h2>
+        <p class="rsvp-intro">Cette version de test affiche seulement une confirmation. L’enregistrement des réponses sera ajouté ensuite.</p>
+        <div class="buttons">
+          <button class="answer yes" type="button" data-answer="present">Je serai présent(e)</button>
+          <button class="answer no" type="button" data-answer="absent">Je ne pourrai pas venir</button>
+        </div>
+        <p id="response-message" class="response-message" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>Hâte de vous retrouver pour faire la fête !</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
