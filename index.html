@@ -59,62 +59,37 @@
           <p class="rsvp-subtitle">Nous avons besoin de savoir si tu viendras</p>
 
           <form id="rsvp-form" class="form">
+            <!-- Réponse Oui/Non -->
             <div class="form-group">
-              <label class="group-label">Seras-tu présent ?</label>
-              <div class="toggle-group" role="group" aria-label="Réponse">
-                <button type="button" class="toggle-btn active" data-answer="present">
-                  <span class="toggle-icon">✓</span>
-                  <span>Oui, je viens</span>
-                </button>
-                <button type="button" class="toggle-btn" data-answer="absent">
-                  <span class="toggle-icon">✗</span>
-                  <span>Non, je ne peux pas</span>
-                </button>
+              <label class="group-label">Seras-tu présent(e) ?</label>
+              <div class="button-group">
+                <button type="button" class="btn-choice active" data-value="present">Oui, je viens</button>
+                <button type="button" class="btn-choice" data-value="absent">Non, je ne peux pas</button>
               </div>
-              <input type="hidden" id="attendance" name="attendance" value="present">
+              <input type="hidden" id="attendance" value="present">
             </div>
 
+            <!-- Nombre de personnes -->
             <div class="form-group">
-              <label class="form-label" for="guest-count">Combien de personnes ?</label>
-              <div class="input-stepper">
-                <button type="button" class="stepper-btn" id="minus-btn">−</button>
-                <input 
-                  type="number" 
-                  id="guest-count" 
-                  name="guestCount" 
-                  value="1" 
-                  min="1" 
-                  max="2" 
-                  readonly
-                  class="stepper-input"
-                >
-                <button type="button" class="stepper-btn" id="plus-btn">+</button>
+              <label class="form-label">Nombre de personnes</label>
+              <div class="counter">
+                <button type="button" class="btn-counter" id="btn-minus">−</button>
+                <input type="number" id="guest-count" value="1" min="1" max="2" readonly>
+                <button type="button" class="btn-counter" id="btn-plus">+</button>
               </div>
-              <small class="helper-text" id="max-guests-text">Max 2 personnes</small>
+              <small id="max-text">Max 2 personnes</small>
             </div>
 
+            <!-- Message -->
             <div class="form-group">
-              <label class="form-label" for="message">Un message pour Paul ?</label>
-              <textarea 
-                id="message" 
-                name="message" 
-                placeholder="Écris quelque chose de sympa..."
-                class="form-textarea"
-                rows="4"
-              ></textarea>
+              <label class="form-label" for="message">Message pour Paul</label>
+              <textarea id="message" placeholder="Écris un message..." rows="4"></textarea>
             </div>
 
-            <button type="submit" class="submit-btn">Envoyer ma réponse</button>
-            <p id="response-message" class="response-message" aria-live="polite" aria-atomic="true"></p>
+            <button type="submit" class="btn-submit">Envoyer ma réponse</button>
+            <div id="response-msg" class="response-msg"></div>
           </form>
         </div>
-      </section>
-
-      <section class="admin-section" id="admin-section" style="display: none;">
-        <h2>Zone Admin</h2>
-        <button type="button" class="admin-btn" id="export-btn">📥 Télécharger les réponses (CSV)</button>
-        <button type="button" class="admin-btn secondary" id="view-btn">👁️ Voir les réponses</button>
-        <button type="button" class="admin-btn secondary" id="clear-btn">🗑️ Effacer les données</button>
       </section>
     </main>
 
