@@ -1,143 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Les 30 ans de Paul</title>
-
-<style>
-
-body{
-    font-family:Arial,sans-serif;
-    background:#f4f4f4;
-    margin:0;
-    padding:20px;
-}
-
-.container{
-    max-width:800px;
-    margin:auto;
-}
-
-.card{
-    background:white;
-    border-radius:20px;
-    padding:40px;
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
-    text-align:center;
-}
-
-h1{
-    margin-bottom:20px;
-}
-
-label{
-    display:block;
-    margin-top:20px;
-    margin-bottom:8px;
-    font-weight:bold;
-}
-
-input,
-textarea,
-select{
-    width:100%;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    box-sizing:border-box;
-}
-
-textarea{
-    min-height:120px;
-}
-
-.actions{
-    margin-top:30px;
-}
-
-button{
-    border:none;
-    border-radius:8px;
-    padding:15px 25px;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-}
-
-.yes{
-    background:#28a745;
-}
-
-.no{
-    background:#dc3545;
-}
-
-#message{
-    margin-top:25px;
-    font-weight:bold;
-}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Invitation aux 30 ans de Paul">
+  <title>Les 30 ans de Paul</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="app">
+    <header class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Invitation personnelle</p>
+        <h1>Les 30 ans<br>de Paul</h1>
+        <p class="subtitle">Samedi 15 mai 2027 à 18 h 30</p>
+        <div id="countdown" class="countdown" aria-live="polite">Chargement du compte à rebours…</div>
+        <a class="hero-link" href="#rsvp">Répondre à l’invitation</a>
+      </div>
+    </header>
 
-<div class="container">
+    <section class="welcome-section">
+      <div class="welcome-card">
+        <span class="welcome-badge">Invitation personnelle</span>
+        <h2>Bienvenue <span id="guest-name">Invité(e)</span> !</h2>
+        <p id="guest-status">Vérification de votre invitation…</p>
+      </div>
+    </section>
 
-<div class="card">
+    <main class="main-content">
+      <section class="intro-card">
+        <h2 class="section-title">Paul fête ses 30 ans</h2>
+        <p>Rejoins-nous pour une soirée pleine de musique, de surprises et de bons moments.</p>
+      </section>
 
-<h1>🎉 Les 30 ans de Paul 🎉</h1>
+      <section class="quick-info" aria-labelledby="programme-title">
+        <h2 id="programme-title" class="section-title">Le programme</h2>
+        <div class="info-grid">
+          <article class="info-card"><span class="info-icon" aria-hidden="true">📍</span><h3>Lieu</h3><p>Adresse à préciser</p></article>
+          <article class="info-card"><span class="info-icon" aria-hidden="true">🥂</span><h3>Programme</h3><p>Apéritif, repas, musique et soirée dansante.</p></article>
+          <article class="info-card"><span class="info-icon" aria-hidden="true">✨</span><h3>Dress code</h3><p>Tenue festive et décontractée.</p></article>
+        </div>
+      </section>
 
-<h2 id="guestName">Chargement...</h2>
+      <section id="rsvp" class="rsvp-section">
+        <div class="rsvp-card">
+          <div id="loading-state" class="state-box">Chargement de l’invitation…</div>
 
-<p>Merci de confirmer votre présence.</p>
+          <div id="unknown-state" class="state-box error-box" hidden>
+            <h2>Invitation introuvable</h2>
+            <p>Ce lien ne correspond pas à un invité enregistré. Vérifie que le QR code ou le lien contient bien ton token.</p>
+          </div>
 
-<form id="rsvpForm">
+          <form id="rsvp-form" class="form" hidden>
+            <h2>Confirmer ta présence</h2>
+            <p class="rsvp-subtitle">Ta réponse sera enregistrée directement pour l’organisation de la soirée.</p>
 
-<label>Nombre de participants</label>
-<input
-    type="number"
-    id="guestsCount"
-    value="1"
-    min="1"
->
+            <fieldset class="form-group choice-fieldset">
+              <legend class="group-label">Seras-tu présent(e) ?</legend>
+              <div class="toggle-group">
+                <button type="button" class="toggle-btn" data-answer="present" aria-pressed="false"><span class="toggle-icon">✓</span> Oui, je serai là</button>
+                <button type="button" class="toggle-btn" data-answer="absent" aria-pressed="false"><span class="toggle-icon">×</span> Non, désolé(e)</button>
+              </div>
+              <input type="hidden" id="attendance" required>
+            </fieldset>
 
-<label>Allergies / remarques</label>
-<textarea
-    id="comment"
-    placeholder="Indiquez ici vos remarques..."
-></textarea>
+            <div id="attendance-details" class="form-details" hidden>
+              <div class="form-group">
+                <label class="form-label" for="guest-count">Nombre total de personnes</label>
+                <div class="input-stepper">
+                  <button id="minus-btn" class="stepper-btn" type="button" aria-label="Retirer une personne">−</button>
+                  <input id="guest-count" class="stepper-input" type="number" min="1" value="1" inputmode="numeric" readonly>
+                  <button id="plus-btn" class="stepper-btn" type="button" aria-label="Ajouter une personne">+</button>
+                </div>
+                <span id="max-guests-text" class="helper-text"></span>
+              </div>
+            </div>
 
-<div class="actions">
+            <div class="form-group">
+              <label class="form-label" for="message">Message pour Paul <span class="optional">(facultatif)</span></label>
+              <textarea id="message" class="form-textarea" maxlength="1000" placeholder="Un petit mot pour Paul…"></textarea>
+            </div>
 
-<button
-    type="button"
-    class="yes"
-    onclick="reply(true)">
-    ✅ Je participe
-</button>
+            <button id="submit-btn" class="submit-btn" type="submit">Confirmer ma réponse</button>
+            <p id="response-message" class="response-message" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
 
-<button
-    type="button"
-    class="no"
-    onclick="reply(false)">
-    ❌ Je ne participe pas
-</button>
+    <footer>Les 30 ans de Paul</footer>
+  </div>
 
-</div>
-
-</form>
-
-<div id="message"></div>
-
-</div>
-
-</div>
-
-https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2script>
-app.jsscript>
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
