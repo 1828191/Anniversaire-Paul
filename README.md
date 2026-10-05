@@ -1,5 +1,5 @@
-# Anniversaire Paul V5 Cartoon
+# Anniversaire Paul V6 Cartoon Responsive
 
-Dépose tous les fichiers du ZIP à la racine du dépôt GitHub. Les images sont incluses et les noms correspondent au code.
+La V6 corrige le haut du site sur téléphone, améliore la composition PC, ajoute des effets légers et remplace le canapé.
 
-Tests : `?token=V001`, `?token=L001`, `?token=O001` et `admin.html`.
+Dépose tous les fichiers à la racine GitHub. Tests : `?token=V001`, `?token=L001`, `?token=O001`, `admin.html`.
