@@ -1,3 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@500;700;900&display=swap');:root{--ink:#171717;--yellow:#ffd521;--pink:#ff67b1;--green:#78d34d;--red:#ef3340}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff7cf;color:var(--ink);font-family:Nunito,sans-serif}h1,h2,h3{font-family:Bangers,cursive;letter-spacing:.045em}.hero{position:relative;min-height:800px;overflow:hidden;display:flex;align-items:center;padding:48px 3vw 80px;background:url(Ciel.jpg) center/cover;border-bottom:7px solid #000}.cloud{position:absolute;width:53%;opacity:.96;filter:drop-shadow(0 7px 0 rgba(255,255,255,.2));animation:drift 28s ease-in-out infinite alternate}.cloud-one{left:-5%;top:0}.cloud-two{right:-10%;top:18%;transform:scale(.78)}.balloon-cluster{position:absolute;z-index:2;display:flex;gap:0}.balloon-cluster img{width:56px;animation:float 4s ease-in-out infinite;filter:drop-shadow(3px 4px #0005)}.balloon-cluster img+img{margin-top:30px;width:47px;animation-delay:-2s}.balloon-left{left:2%;bottom:20%}.balloon-right{right:2%;bottom:25%}.hero-layout{position:relative;z-index:3;width:min(1480px,100%);margin:auto;display:grid;grid-template-columns:minmax(230px,.95fr) minmax(500px,1.75fr) minmax(230px,.95fr);align-items:center;gap:24px}.tv-unit,.donut-unit{position:relative;display:grid;place-items:center}.tv-motion{position:relative;width:min(100%,360px);animation:bob 5s ease-in-out infinite}.tv-motion>img{display:block;width:100%;filter:drop-shadow(9px 11px #000)}.tv-screen{position:absolute;left:46.5%;top:58.5%;width:49%;transform:translate(-50%,-50%) rotate(-1deg);text-align:center;color:var(--yellow);font-family:Bangers;line-height:.84;text-shadow:3px 3px #542b84,0 0 11px #5fd5ff}.tv-screen strong{display:block;font-size:clamp(30px,3.3vw,48px)}.tv-screen small{display:block;margin-top:8px;font-size:clamp(20px,2.3vw,34px)}.donut-unit img{width:min(100%,350px);filter:drop-shadow(9px 11px #000);animation:donutBob 6s ease-in-out infinite}.wow{position:absolute;z-index:2;top:-8px;right:2%;font:28px Bangers;background:var(--yellow);border:4px solid #000;padding:7px 10px;box-shadow:5px 5px #000;transform:rotate(8deg)}.hero-copy{text-align:center}.label{display:inline-block;background:var(--pink);border:4px solid #000;padding:7px 14px;box-shadow:6px 6px #000;font-weight:900}.hero h1{margin:25px 0 10px;font-size:clamp(4.6rem,8.3vw,8.8rem);font-weight:900;line-height:.79;color:var(--yellow);text-shadow:6px 6px #000,10px 10px #fff;-webkit-text-stroke:1px #000}.hero h1 i{color:#fff;font-style:normal}.hero-copy>p{display:inline-block;background:#fff;border:3px solid #000;padding:8px 12px;font-weight:900}.countdown{width:max-content;max-width:100%;margin:18px auto;padding:14px 18px;background:var(--yellow);border:5px solid #000;border-radius:18px;box-shadow:7px 7px #000;font-weight:900}.cta,.admin-link a,.admin-hero a{display:inline-block;background:var(--red);color:#fff;border:4px solid #000;padding:14px 21px;box-shadow:7px 7px #000;text-decoration:none;font-weight:900}main{max-width:1120px;margin:auto;padding:40px 20px}.comic{background:#fffdf1;border:5px solid #000;border-radius:24px;box-shadow:11px 11px #000}.welcome{position:relative;z-index:4;margin-top:-70px;padding:34px;display:flex;align-items:center;justify-content:space-between}.welcome h2,.rsvp h2{font-size:clamp(2.7rem,7vw,5rem);margin:18px 0 0}.boom{width:220px;animation:pulse 3s ease-in-out infinite}.confetti-zone{position:relative;isolation:isolate}.confetti-zone:before{content:"";position:absolute;inset:0;z-index:-1;background:url(Confettis.png) center/430px repeat;opacity:.045;border-radius:inherit}.program{padding:65px 0 32px}.program>h2{text-align:center;font-size:3.25rem}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.cards article{padding:23px;text-align:center;border:5px solid #000;border-radius:26px;box-shadow:9px 9px #000;transition:.2s}.cards article:hover{transform:translateY(-7px)}.cards img{width:165px;height:165px;object-fit:contain}.cards h3{font-size:2.3rem;margin:5px}.yellow{background:var(--yellow)}.pink{background:#ffa4d3}.green{background:#abe87b}.lounge{margin:50px 0;display:grid;grid-template-columns:1fr 1.2fr;align-items:center;gap:35px;padding:28px;background:#ffbd6e;border:5px solid #000;border-radius:28px;box-shadow:10px 10px #000}.lounge img{width:100%;filter:drop-shadow(6px 7px #0006)}.lounge span{display:inline-block;background:#fff;border:4px solid #000;padding:8px;font-weight:900}.lounge h2{font-size:3.5rem;margin:14px 0}.rsvp{padding:42px;overflow:hidden}.answers{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:25px 0}.answers button,.submit{padding:18px;border:5px solid #000;border-radius:18px;box-shadow:7px 7px #000;font-weight:900;cursor:pointer}.answers button:first-child{background:var(--green)}.answers button:last-child{background:var(--pink)}.answers .active{outline:7px solid var(--yellow)}.people{margin:20px 0;padding:20px;text-align:center;background:#dff6ff;border:4px solid #000;border-radius:18px;font-weight:900}.people div{margin:12px}.people button{width:50px;height:50px;border:4px solid #000;border-radius:50%;background:var(--yellow);font-size:1.4rem}.people input{width:95px;padding:10px;text-align:center;border:4px solid #000;border-radius:12px;font-weight:900}.message-label{display:block;margin-top:20px;font-weight:900}textarea{display:block;width:100%;min-height:120px;margin-top:8px;padding:14px;border:5px solid #000;border-radius:16px}.submit{width:100%;margin-top:18px;background:var(--red);color:#fff}.admin-link{text-align:center;margin:40px}footer{text-align:center;padding:28px;background:#171717;color:var(--yellow);font:2rem Bangers}.admin-body{background:url(Ciel.jpg) center/cover fixed}.admin-hero{position:relative;min-height:370px;padding:50px 8%;overflow:hidden;border-bottom:7px solid #000;background:#2ebcffcc}.admin-hero h1{font-size:clamp(4rem,9vw,7rem);line-height:.85;color:var(--yellow);text-shadow:5px 5px #000}.admin-hero>img{position:absolute;right:7%;bottom:-45px;width:290px}.dashboard{max-width:1200px}.stats{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:-70px 0 35px}.stats article,.dash-card{padding:24px;background:#fff;border:5px solid #000;border-radius:22px;box-shadow:9px 9px #000}.stats{text-align:center}.stats strong{display:block;color:var(--red);font:4rem Bangers}.dash-card{margin-bottom:34px}.chart{height:320px}.table-wrap{overflow:auto;border:4px solid #000;border-radius:13px}table{width:100%;min-width:760px;border-collapse:collapse}th,td{padding:13px;border-bottom:3px solid #000;text-align:left}th{background:var(--yellow)}[hidden]{display:none!important}@keyframes drift{to{transform:translateX(14%)}}@keyframes float{50%{transform:translateY(-20px) rotate(4deg)}}@keyframes bob{50%{transform:translateY(-12px) rotate(2deg)}}@keyframes donutBob{50%{transform:translateY(-14px) rotate(6deg)}}@keyframes pulse{50%{transform:scale(1.05)}}
-@media(max-width:760px){.hero{min-height:820px;display:block;padding:30px 14px 40px}.hero-layout{display:flex;flex-direction:column}.hero-copy{order:1}.tv-unit{position:absolute;order:2;left:5%;bottom:-5px;width:29%;height:125px}.donut-unit{position:absolute;order:3;right:6%;bottom:3px;width:27%;height:115px}.tv-motion,.donut-unit img{max-width:108px}.tv-motion>img,.donut-unit img{filter:drop-shadow(5px 6px #000)}.tv-screen{top:58.5%;font-size:12px}.tv-screen strong{font-size:14px}.tv-screen small{font-size:10px;margin-top:3px}.wow{font-size:12px;border-width:3px;box-shadow:3px 3px #000}.hero h1{font-size:clamp(3.25rem,14vw,5rem);text-shadow:4px 4px #000,7px 7px #fff}.hero-copy>p{font-size:.88rem}.countdown{font-size:.78rem;padding:10px}.cta{padding:11px 14px}.cloud{width:110%;opacity:.96}.cloud-one{left:-25%;top:2%}.cloud-two{display:none}.balloon-cluster img{width:35px}.balloon-left{left:1%;bottom:17%}.balloon-right{right:1%;bottom:18%}.welcome{margin-top:-24px;display:block;text-align:center;padding:25px}.boom{width:135px}.cards{grid-template-columns:1fr}.lounge{grid-template-columns:1fr;text-align:center}.lounge img{max-width:470px;margin:auto}.answers{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.admin-hero>img{width:170px;opacity:.45}.program{padding-top:45px}.program>h2{font-size:2.5rem}}
-@media(max-width:430px){.hero{min-height:780px}.hero h1{font-size:3.35rem}.tv-unit{bottom:-8px;width:27%}.donut-unit{bottom:-1px;width:25%}.tv-motion,.donut-unit img{max-width:92px}.balloon-cluster{display:none}.rsvp{padding:23px}.stats{grid-template-columns:1fr}.lounge h2{font-size:2.7rem}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+/*
+ * Anniversaire Paul - Correctif V7.1
+ * À copier à la FIN du fichier style.css actuel.
+ * Ce correctif descend le texte dans la TV et place réellement
+ * la TV et le donut sous le contenu principal sur téléphone.
+ */
+
+/* Le texte reste lié au conteneur animé .tv-motion */
+.tv-screen {
+  left: 46.5%;
+  top: 66%;
+  width: 51%;
+  transform: translate(-50%, -50%) rotate(-1deg);
+}
+
+/* Écran PC : meilleure occupation de l'écran de la TV */
+.tv-screen strong {
+  font-size: clamp(30px, 3.3vw, 48px);
+  line-height: 0.88;
+}
+
+.tv-screen small {
+  display: block;
+  margin-top: 7px;
+  font-size: clamp(20px, 2.3vw, 34px);
+  line-height: 0.88;
+}
+
+/* Téléphones et tablettes étroites */
+@media (max-width: 760px) {
+  /* Plus de hauteur pour réserver une vraie zone aux deux illustrations. */
+  .hero {
+    min-height: 930px;
+    padding-bottom: 235px;
+  }
+
+  /* La TV et le donut sont placés dans la partie basse du hero. */
+  .tv-unit {
+    left: 6%;
+    bottom: 22px;
+    width: 27%;
+    height: 112px;
+  }
+
+  .donut-unit {
+    right: 7%;
+    bottom: 30px;
+    width: 25%;
+    height: 105px;
+  }
+
+  .tv-motion,
+  .donut-unit img {
+    max-width: 100px;
+  }
+
+  /* Recentrage spécifique du texte dans la petite TV. */
+  .tv-screen {
+    left: 46.5%;
+    top: 66%;
+    width: 52%;
+  }
+
+  .tv-screen strong {
+    font-size: 13px;
+    line-height: 0.86;
+  }
+
+  .tv-screen small {
+    margin-top: 3px;
+    font-size: 9px;
+    line-height: 0.86;
+  }
+
+  .wow {
+    top: -7px;
+    right: -4px;
+    font-size: 11px;
+  }
+}
+
+/* Petits téléphones */
+@media (max-width: 430px) {
+  .hero {
+    min-height: 900px;
+    padding-bottom: 220px;
+  }
+
+  .tv-unit {
+    left: 7%;
+    bottom: 18px;
+    width: 25%;
+    height: 98px;
+  }
+
+  .donut-unit {
+    right: 8%;
+    bottom: 25px;
+    width: 23%;
+    height: 94px;
+  }
+
+  .tv-motion,
+  .donut-unit img {
+    max-width: 88px;
+  }
+
+  .tv-screen {
+    top: 66%;
+  }
+
+  .tv-screen strong {
+    font-size: 11px;
+  }
+
+  .tv-screen small {
+    margin-top: 2px;
+    font-size: 8px;
+  }
+}
