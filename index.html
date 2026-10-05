@@ -1,50 +1,8 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Invitation aux 30 ans de Paul">
-  <title>Les 30 ans de Paul</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body><div class="app">
-<header class="hero"><div class="hero-content">
-  <p class="eyebrow">Invitation personnelle</p><h1>Les 30 ans<br>de Paul</h1>
-  <p class="subtitle">Samedi 15 mai 2027 à 18 h 30</p>
-  <div id="countdown" class="countdown">Chargement…</div>
-  <a class="hero-link" href="#rsvp">Répondre à l’invitation</a>
-</div></header>
-<section class="welcome-section"><div class="welcome-card">
-  <span class="welcome-badge">Invitation personnelle</span>
-  <h2>Bienvenue <span id="guest-name">Invité(e)</span> !</h2>
-  <p id="guest-status">Vérification de votre invitation…</p>
-</div></section>
-<main class="main-content">
-<section class="intro-card"><h2 class="section-title">Paul fête ses 30 ans</h2><p>Rejoins-nous pour une soirée pleine de musique, de surprises et de bons moments.</p></section>
-<section class="quick-info"><h2 class="section-title">Le programme</h2><div class="info-grid">
-  <article class="info-card"><span class="info-icon">📍</span><h3>Lieu</h3><p>Adresse à préciser</p></article>
-  <article class="info-card"><span class="info-icon">🥂</span><h3>Programme</h3><p>Apéritif, repas, musique et soirée dansante.</p></article>
-  <article class="info-card"><span class="info-icon">✨</span><h3>Dress code</h3><p>Tenue festive et décontractée.</p></article>
-</div></section>
-<section id="rsvp" class="rsvp-section"><div class="rsvp-card">
-  <div id="loading-state" class="state-box">Chargement de l’invitation…</div>
-  <div id="unknown-state" class="state-box error-box" hidden><h2>Invitation introuvable</h2><p>Vérifie ton QR code ou ton lien personnel.</p></div>
-  <form id="rsvp-form" class="form" hidden>
-    <h2>Confirmer ta présence</h2><p class="rsvp-subtitle">Ta réponse sera enregistrée pour l’organisation de la soirée.</p>
-    <fieldset class="choice-fieldset"><legend class="group-label">Seras-tu présent(e) ?</legend><div class="toggle-group">
-      <button type="button" class="toggle-btn" data-answer="present">✓ Oui, je serai là</button>
-      <button type="button" class="toggle-btn" data-answer="absent">× Non, désolé(e)</button>
-    </div><input type="hidden" id="attendance"></fieldset>
-    <div id="attendance-details" class="form-group" hidden>
-      <label class="form-label" for="guest-count">Nombre total de personnes</label>
-      <div class="input-stepper"><button id="minus-btn" class="stepper-btn" type="button">−</button><input id="guest-count" class="stepper-input" type="number" min="1" value="1" inputmode="numeric"><button id="plus-btn" class="stepper-btn" type="button">+</button></div>
-      <span class="helper-text">Nombre libre, sans limite définie par l’invitation.</span>
-    </div>
-    <div class="form-group"><label class="form-label" for="message">Message pour Paul <span class="optional">(facultatif)</span></label><textarea id="message" class="form-textarea" maxlength="1000" placeholder="Un petit mot pour Paul…"></textarea></div>
-    <button id="submit-btn" class="submit-btn" type="submit">Confirmer ma réponse</button><p id="response-message" class="response-message"></p>
-  </form>
-</div></section>
-<p class="admin-link-wrap"><a class="admin-link" href="admin.html">Voir le tableau de bord</a></p>
-</main><footer>Les 30 ans de Paul</footer></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script><script src="script.js"></script>
-</body></html>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Paul fête ses 30 ans !</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="hero"><img class="clouds" src="Nuages.png" alt=""><img class="confetti" src="Confettis.png" alt=""><img class="balloon b1" src="ballon.png" alt=""><img class="balloon b2" src="ballon.png" alt=""><img class="donut spin" src="donut.png" alt="Donut rose cartoon"><img class="tv" src="TvV.png" alt="Télévision cartoon"><div class="tv-copy">30 ANS<br><small>DE PAUL</small></div><div class="hero-copy"><span class="episode">ÉPISODE SPÉCIAL</span><h1>PAUL FÊTE<br><em>SES 30 ANS !</em></h1><p>L’événement le plus sérieusement absurde de l’année.</p><div id="countdown" class="countdown">Chargement du générique…</div><a class="cta" href="#rsvp">JE DONNE MA RÉPONSE</a></div></header>
+<main><section class="welcome comic-card"><div><span class="kicker">INVITATION PERSONNELLE</span><h2>Hé, <span id="guest-name">invité(e)</span> !</h2><p id="guest-status">On vérifie ton pass pour la fête…</p></div><img src="boom.png" alt="Boom" class="boom"></section>
+<section class="story"><h2>AU PROGRAMME DE CET ÉPISODE</h2><div class="program-grid"><article class="program-card yellow"><img src="duf.png" alt="Canette cartoon"><h3>Apéro</h3><p>On trinque, on discute, on refait le monde.</p></article><article class="program-card pink"><img src="gateau.png" alt="Gâteau d'anniversaire cartoon"><h3>Gâteau</h3><p>Des bougies, du sucre et une dignité relative.</p></article><article class="program-card green"><img src="cadeaux.png" alt="Cadeaux cartoon"><h3>Surprises</h3><p>Quelques rebondissements sont au scénario.</p></article></div></section>
+<section class="lounge"><img src="canap.png" alt="Canapé cartoon"><div><span class="speech">SAMEDI 15 MAI 2027 · 18 H 30</span><h2>Le canapé t’attend.</h2><p>Adresse à préciser · Tenue festive et décontractée · Musique et soirée dansante.</p></div></section>
+<section id="rsvp" class="rsvp comic-card"><div id="loading-state" class="state">Chargement de ton invitation…</div><div id="unknown-state" class="state error" hidden><h2>Oups !</h2><p>Ce lien ne correspond à aucune invitation.</p></div><form id="rsvp-form" hidden><span class="kicker">QUESTION ULTRA IMPORTANTE</span><h2>Tu viens faire la fête ?</h2><div class="answer-row"><button type="button" class="answer yes-btn" data-answer="present">🍩 OUI, J’ARRIVE !</button><button type="button" class="answer no-btn" data-answer="absent">📺 NON, JE PASSE MON TOUR</button></div><input type="hidden" id="attendance"><div id="attendance-details" class="people" hidden><label>Combien de personnes au total ?</label><div class="stepper"><button id="minus-btn" type="button">−</button><input id="guest-count" type="number" min="1" value="1"><button id="plus-btn" type="button">+</button></div><small>Aucune limite fixée. Indique simplement le nombre réel.</small></div><label class="message-label">Un petit mot pour Paul ?</label><textarea id="message" maxlength="1000" placeholder="Écris ton message ici…"></textarea><button id="submit-btn" class="submit" type="submit">ENVOYER MA RÉPONSE</button><p id="response-message" class="response-message"></p></form></section>
+<p class="admin-access"><a href="admin.html">Accéder au centre de contrôle</a></p></main><footer>★ PAUL · SAISON 30 ★</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script><script src="script.js"></script></body></html>
