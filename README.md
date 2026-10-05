@@ -1,5 +1,5 @@
-# Anniversaire Paul V7 Cartoon Final
+## Anniversaire Paul V7.1 Cartoon Final
 
-V7 graphique : hero PC renforcé, nuages visibles, titre plus gras, texte TV intégré au mouvement, ballons regroupés, TV et donut descendus et réduits sur mobile. Le formulaire et le tableau de bord Supabase sont conservés.
+Version complète basée sur la V7 fournie. Corrections intégrées : texte « 30 ANS / DE PAUL » descendu dans la télévision, TV et donut placés dans une zone dédiée sous le contenu du hero sur mobile, et cache navigateur actualisé avec `?v=71`.
 
 Déposer tous les fichiers à la racine du dépôt GitHub.
