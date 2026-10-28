@@ -1,6 +1,14 @@
-# Anniversaire Paul V7.4 Simple
+# Anniversaire Paul V7.5
 
-1. Exécuter `SUPABASE_MIGRATION.sql` dans Supabase SQL Editor.
-2. Pousser l’intégralité des fichiers de ce dossier à la racine du dépôt GitHub.
-3. Le répondant saisit son prénom/nom, choisit OUI ou NON. Après OUI, le bouton `+ AJOUTER UNE PERSONNE` apparaît. Toutes les personnes ajoutées sont classées PRÉSENT. Après NON, aucune personne supplémentaire ne peut être ajoutée.
-4. Le centre de contrôle affiche chaque personne séparément et permet de supprimer individuellement un doublon.
+Correctifs ciblés uniquement :
+- wording plus propre pour l'ajout d'accompagnants ;
+- centre de contrôle : une ligne séparée par personne ;
+- bouton SUPPRIMER sur chaque personne ;
+- affichage explicite si aucune inscription n'est trouvée ;
+- SQL V7.5 de remise en place de la vue et de ses droits.
+
+## Installation
+1. La V7.4 doit déjà être installée.
+2. Exécuter `SUPABASE_V75_PATCH.sql` dans Supabase SQL Editor.
+3. Vérifier que le SELECT final affiche bien une ligne par personne.
+4. Pousser ensuite tous les fichiers du ZIP à la racine de GitHub.
