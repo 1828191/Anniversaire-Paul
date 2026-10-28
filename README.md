@@ -1,14 +1,10 @@
-# Anniversaire Paul V7.5
+# Anniversaire Paul V7.6 - correctif centre de contrôle
 
-Correctifs ciblés uniquement :
-- wording plus propre pour l'ajout d'accompagnants ;
-- centre de contrôle : une ligne séparée par personne ;
-- bouton SUPPRIMER sur chaque personne ;
-- affichage explicite si aucune inscription n'est trouvée ;
-- SQL V7.5 de remise en place de la vue et de ses droits.
+La V7.5 est conservée. Seul le bug JavaScript empêchant le tableau du centre de contrôle de s’afficher a été corrigé.
+
+Cause : le script appelait `dashboard_status`, alors que l’élément HTML a l’identifiant `dashboard-status`. L’exécution s’arrêtait avant de remplir le tableau.
 
 ## Installation
-1. La V7.4 doit déjà être installée.
-2. Exécuter `SUPABASE_V75_PATCH.sql` dans Supabase SQL Editor.
-3. Vérifier que le SELECT final affiche bien une ligne par personne.
-4. Pousser ensuite tous les fichiers du ZIP à la racine de GitHub.
+- Aucun nouveau SQL à exécuter si le SELECT `registration_people_dashboard_v74` retourne déjà les personnes.
+- Pousser l’intégralité du ZIP dans GitHub.
+- `admin.js` passe à `?v=76` pour forcer le rechargement du fichier corrigé.
