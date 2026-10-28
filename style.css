@@ -8,3 +8,14 @@
 .add-person{margin:10px 0 6px;padding:12px 18px;border:4px solid #000;border-radius:14px;background:#78d34d;font:inherit;font-weight:900;cursor:pointer;box-shadow:4px 4px 0 #000}.person-card{position:relative}.remove-person{position:absolute;right:10px;top:10px;width:38px;height:38px;border:3px solid #000;border-radius:50%;background:#ef3340;color:#fff;font-size:24px;font-weight:900;line-height:28px;cursor:pointer}#companions[hidden]{display:none!important}
 
 .companions-head{margin:18px 0 10px}.companions-head strong,.companions-head span{display:block}.companions-head strong{font-size:1.15rem}.companions-head span{margin-top:4px;font-weight:700}.admin-body .table-wrap table{min-width:900px}.admin-body .table-wrap td:first-child,.admin-body .table-wrap td:nth-child(2){font-weight:900}
+
+/* V7.7 design */
+.program .cards{grid-template-columns:repeat(3,1fr)}
+.foodtruck-card img{width:min(100%,245px);height:150px;object-fit:contain}
+.surprise-lounge{display:grid;grid-template-columns:minmax(180px,1fr) minmax(280px,1.45fr) minmax(220px,1.2fr);align-items:end;gap:22px}
+.surprise-lounge .lounge-sofa{width:100%;max-width:330px;justify-self:start}
+.surprise-lounge .lounge-music{width:100%;max-width:420px;justify-self:end;align-self:end}
+.lounge-copy{text-align:center;align-self:center}
+.maps-link{display:inline-block;margin-top:16px;padding:11px 15px;background:#ffdf25;color:#000;border:4px solid #000;border-radius:14px;font-weight:900;text-decoration:none;box-shadow:4px 4px 0 #000}
+.maps-link:hover{transform:translate(1px,1px);box-shadow:3px 3px 0 #000}
+@media(max-width:760px){.program .cards{grid-template-columns:1fr}.surprise-lounge{grid-template-columns:1fr 1fr}.surprise-lounge .lounge-copy{grid-column:1/-1;grid-row:1}.surprise-lounge .lounge-sofa{grid-column:1;grid-row:2}.surprise-lounge .lounge-music{grid-column:2;grid-row:2}.maps-link{font-size:.9rem}}

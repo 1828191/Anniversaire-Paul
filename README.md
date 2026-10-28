@@ -1,10 +1,12 @@
-# Anniversaire Paul V7.6 - correctif centre de contrôle
+# Anniversaire Paul V7.7 Design
 
-La V7.5 est conservée. Seul le bug JavaScript empêchant le tableau du centre de contrôle de s’afficher a été corrigé.
+Base fonctionnelle V7.6 conservée. Modifications visuelles uniquement :
+- date : dimanche 31 janvier 2027 à 12 h ;
+- lieu : Ferme Sénéchal, rue des Clercs, Vieille-Chapelle, avec bouton Google Maps ;
+- suppression de la bande « Tu es invité(e) » ;
+- remplacement de « Surprises » par Food truck, placé entre Apéro et Gâteau ;
+- ajout de Foodtruck.png ;
+- section basse : canapé à gauche, nouveau texte surprises au centre, musique.png à droite ;
+- questionnaire, Supabase et centre de contrôle V7.6 inchangés.
 
-Cause : le script appelait `dashboard_status`, alors que l’élément HTML a l’identifiant `dashboard-status`. L’exécution s’arrêtait avant de remplir le tableau.
-
-## Installation
-- Aucun nouveau SQL à exécuter si le SELECT `registration_people_dashboard_v74` retourne déjà les personnes.
-- Pousser l’intégralité du ZIP dans GitHub.
-- `admin.js` passe à `?v=76` pour forcer le rechargement du fichier corrigé.
+Aucun SQL à exécuter. Pousser tous les fichiers du ZIP dans GitHub.
