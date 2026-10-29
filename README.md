@@ -1,11 +1,11 @@
-# Anniversaire Paul V7.12
+# Anniversaire Paul V7.13
 
-Base V7.11 conservée. Ajustements finaux :
-- musique.mp3 en lecture automatique et en boucle, sans bouton visible ;
-- si Safari/iOS bloque le son automatique, le site retente la lecture au premier geste utilisateur ;
-- petit espace entre le hero bleu et la capsule date/lieu ;
-- couleur du haut de page mobile alignée sur le bleu du hero avec prise en charge de la safe-area iPhone ;
-- texte « 30 ANS / DE PAUL » légèrement déplacé vers la gauche et le bas pour mieux le centrer dans l'écran TV ;
-- questionnaire, Supabase, administration et animations PC de la V7.11 inchangés.
+Correctif ciblé à partir de la V7.12 :
+- retour en arrière complet sur la tentative de colorer/remplir la barre supérieure iPhone ;
+- retour au viewport mobile standard et à la mise en page mobile stable ;
+- conservation de la musique automatique de la V7.12 ;
+- conservation du petit espace avant la capsule date/lieu ;
+- correction du texte dans la TV ramenée à 10 % du déplacement V7.12 : environ 0,3 px sur mobile et 0,4 px sur PC ;
+- aucun changement Supabase, questionnaire ou administration.
 
-Aucun SQL à exécuter. Ajouter `musique.mp3` à la racine GitHub.
+Aucun SQL à exécuter.
