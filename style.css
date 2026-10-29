@@ -100,37 +100,7 @@ main{padding-top:0}
 .music-toggle:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000}
 @media(prefers-reduced-motion:reduce){.tv-motion,.donut-unit{animation:none!important}}
 
-/* V7.12 final polish */
-html{margin:0;padding:0;background:#23a9e0}
-body{margin:0;padding:0;background:#fff7cf}
-.hero{margin-top:0}
-main{padding-top:7px}
-.surprise-lounge{margin-top:5px}
+/* V7.11b - uniquement les deux ajustements demandés */
 .music-toggle{display:none!important}
-/* Texte de l'écran TV : déplacement minime vers la gauche et le bas */
-.tv-screen{transform:translate(-3px,3px)}
-@media(min-width:761px){.tv-screen{transform:translate(-4px,4px)}}
-@media(max-width:760px){
-  html{background:#23a9e0}
-  body{padding-top:env(safe-area-inset-top);background:#23a9e0}
-  .hero{margin-top:calc(-1 * env(safe-area-inset-top));padding-top:calc(22px + env(safe-area-inset-top))}
-  main{background:#fff7cf;padding-top:6px}
-  .surprise-lounge{margin-top:5px}
-}
-
-/* V7.13 - rollback iPhone safe-area + micro TV correction */
-html{margin:0;padding:0;background:#fff7cf}
-body{margin:0;padding:0!important;background:#fff7cf}
-.hero{margin-top:0!important}
-main{background:#fff7cf;padding-top:7px}
-.surprise-lounge{margin-top:5px}
-.tv-screen{transform:translate(-0.3px,0.3px)}
-@media(min-width:761px){.tv-screen{transform:translate(-0.4px,0.4px)}}
-@media(max-width:760px){
-  html,body{background:#fff7cf}
-  body{padding-top:0!important}
-  .hero{margin-top:0!important;padding-top:28px!important}
-  main{padding-top:6px}
-  .surprise-lounge{margin-top:5px}
-}
-@media(max-width:430px){.hero{padding-top:22px!important}}
+main{padding-top:5px}
+.surprise-lounge{margin-top:4px}

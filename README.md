@@ -1,11 +1,9 @@
-# Anniversaire Paul V7.13
+# Anniversaire Paul V7.11b
 
-Correctif ciblé à partir de la V7.12 :
-- retour en arrière complet sur la tentative de colorer/remplir la barre supérieure iPhone ;
-- retour au viewport mobile standard et à la mise en page mobile stable ;
-- conservation de la musique automatique de la V7.12 ;
-- conservation du petit espace avant la capsule date/lieu ;
-- correction du texte dans la TV ramenée à 10 % du déplacement V7.12 : environ 0,3 px sur mobile et 0,4 px sur PC ;
-- aucun changement Supabase, questionnaire ou administration.
+Reprise stricte de la V7.11. Deux modifications seulement :
+1. `musique.mp3` est prévue en lecture automatique et en boucle, sans bouton visible. Une nouvelle tentative de lecture est faite au premier geste si le navigateur bloque l’autoplay sonore.
+2. Ajout d’un minuscule espace entre le fond bleu du hero et la première capsule date/lieu.
+
+Aucun autre changement : responsive téléphone, TV, donut, animations, questionnaire, Supabase et centre de contrôle restent ceux de la V7.11.
 
 Aucun SQL à exécuter.
