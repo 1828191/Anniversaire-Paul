@@ -1,14 +1,13 @@
-# Anniversaire Paul V7.8 Design
+# Anniversaire Paul V7.10
 
-Base fonctionnelle V7.7/V7.6 conservée. Ajustements :
-- adresse précise : Ferme Sénéchal, 964 Rue des Clercs, 62136 Vieille-Chapelle ;
-- lien Google Maps mis à jour ;
-- nouvelle illustration musique utilisée ;
-- espace réduit entre le hero et le programme ;
-- suppression de « L’événement le plus sérieusement absurde de l’année » ;
-- compte à rebours basé sur la date limite de réponse du 17 janvier 2027 ;
-- texte Gâteau adouci.
+Base fonctionnelle V7.9 conservée.
 
-Aucun SQL à exécuter. Le questionnaire, Supabase et le centre de contrôle restent inchangés.
+Modifications uniquement de mise en page/contenu :
+- date et lieu placés juste après le hero ;
+- texte de la Ferme Sénéchal rendu plus chill et centré sur le lieu, le repas et une ambiance musicale ;
+- programme déplacé juste avant le formulaire RSVP ;
+- sur mobile, TV et donut encadrent le bouton « JE DONNE MA RÉPONSE » ;
+- fichier Confettis.png supprimé et fond confettis neutralisé ;
+- questionnaire, Supabase et centre de contrôle inchangés.
 
-- V7.9 : correction du hero mobile pour supprimer le grand espace vide entre le bouton de réponse et le programme.
+Aucun SQL à exécuter.
