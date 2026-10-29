@@ -10,3 +10,5 @@ Base fonctionnelle V7.7/V7.6 conservée. Ajustements :
 - texte Gâteau adouci.
 
 Aucun SQL à exécuter. Le questionnaire, Supabase et le centre de contrôle restent inchangés.
+
+- V7.9 : correction du hero mobile pour supprimer le grand espace vide entre le bouton de réponse et le programme.
