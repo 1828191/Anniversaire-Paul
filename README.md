@@ -1,13 +1,11 @@
-# Anniversaire Paul V7.11
+# Anniversaire Paul V7.11c
 
-Base fonctionnelle V7.10 conservée, avec correction mobile revenant à la disposition stable de la V7.9 : bouton de réponse dans le texte, TV et donut sur une ligne séparée dessous.
+Reprise directe des fichiers V7.11 fournis par Julien.
 
-Modifications :
-- mobile : abandon de la TV/donut autour du CTA, qui pouvait bloquer la mise en page ;
-- PC : mouvement TV et donut plus rapide et avec une amplitude plus importante ;
-- intégration audio préparée pour un fichier `musique.mp3` placé à la racine ;
-- bouton flottant « MUSIQUE » : lecture uniquement après action de l'utilisateur, pause possible, boucle activée ;
-- la page fonctionne aussi si `musique.mp3` n'est pas encore présent ;
-- aucun changement Supabase / questionnaire / centre de contrôle.
+Modifications uniquement :
+- musique.mp3 automatique/en boucle, sans bouton visible (avec nouvelle tentative au premier geste si le navigateur bloque l'autoplay) ;
+- minuscule espace entre le hero bleu et la capsule date/lieu ;
+- suppression du lien public « Accéder au centre de contrôle » sur l'invitation ;
+- suppression du donut décoratif dans l'en-tête du centre de contrôle.
 
-Aucun SQL à exécuter.
+Aucun changement au responsive mobile V7.11, au questionnaire, aux animations, à Supabase ou au fonctionnement du centre de contrôle. Aucun SQL à exécuter.
