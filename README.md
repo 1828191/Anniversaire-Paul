@@ -1,13 +1,11 @@
-# Anniversaire Paul V7.11
+# Anniversaire Paul V7.12
 
-Base fonctionnelle V7.10 conservée, avec correction mobile revenant à la disposition stable de la V7.9 : bouton de réponse dans le texte, TV et donut sur une ligne séparée dessous.
+Base V7.11 conservée. Ajustements finaux :
+- musique.mp3 en lecture automatique et en boucle, sans bouton visible ;
+- si Safari/iOS bloque le son automatique, le site retente la lecture au premier geste utilisateur ;
+- petit espace entre le hero bleu et la capsule date/lieu ;
+- couleur du haut de page mobile alignée sur le bleu du hero avec prise en charge de la safe-area iPhone ;
+- texte « 30 ANS / DE PAUL » légèrement déplacé vers la gauche et le bas pour mieux le centrer dans l'écran TV ;
+- questionnaire, Supabase, administration et animations PC de la V7.11 inchangés.
 
-Modifications :
-- mobile : abandon de la TV/donut autour du CTA, qui pouvait bloquer la mise en page ;
-- PC : mouvement TV et donut plus rapide et avec une amplitude plus importante ;
-- intégration audio préparée pour un fichier `musique.mp3` placé à la racine ;
-- bouton flottant « MUSIQUE » : lecture uniquement après action de l'utilisateur, pause possible, boucle activée ;
-- la page fonctionne aussi si `musique.mp3` n'est pas encore présent ;
-- aucun changement Supabase / questionnaire / centre de contrôle.
-
-Aucun SQL à exécuter.
+Aucun SQL à exécuter. Ajouter `musique.mp3` à la racine GitHub.

@@ -1,0 +1,2 @@
+Ajouter votre fichier audio à la racine du dépôt GitHub sous le nom exact : musique.mp3
+Le site fonctionnera sans ce fichier ; le bouton musique sera masqué si le navigateur détecte son absence.

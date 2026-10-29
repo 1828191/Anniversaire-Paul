@@ -4,5 +4,12 @@ function choose(v){$("attendance").value=v;document.querySelectorAll(".answers b
 function addPerson(){const f=document.createElement("fieldset");f.className="person-card extra";f.innerHTML=`<legend>Personne ${nextPerson++}</legend><button class="remove-person" type="button" aria-label="Supprimer cette personne">×</button><label>Prénom<input class="person-first" type="text" maxlength="80" required></label><label>Nom<input class="person-last" type="text" maxlength="80" required></label>`;f.querySelector(".remove-person").onclick=()=>f.remove();$("person-fields").appendChild(f);f.querySelector(".person-first").focus()}
 document.querySelectorAll(".answers button").forEach(b=>b.onclick=()=>choose(b.dataset.answer));$("add-person").onclick=addPerson;
 $("rsvp-form").onsubmit=async e=>{e.preventDefault();const out=$("response-message"),attendance=$("attendance").value;if(!attendance){out.textContent="Choisis OUI ou NON.";return}const cards=[...document.querySelectorAll(".person-card")],people=cards.map(c=>({first_name:c.querySelector(".person-first").value.trim(),last_name:c.querySelector(".person-last").value.trim()}));if(people.some(p=>!p.first_name||!p.last_name)){out.textContent="Renseigne le prénom et le nom de chaque personne.";return}const btn=$("submit-btn");btn.disabled=true;out.textContent="Enregistrement…";const q=await supabaseClient.rpc("submit_registration_v74",{p_attendance:attendance==="present",p_message:$("message").value.trim()||null,p_people:people});btn.disabled=false;if(q.error){console.error(q.error);out.textContent=q.message||q.error?.message||"Erreur d’enregistrement.";if(q.error?.message?.includes("DUPLICATE_PERSON"))out.textContent="Une personne portant ce prénom et ce nom est déjà inscrite.";return}out.textContent="C’est enregistré ! Merci 🎉";document.querySelectorAll(".person-card.extra").forEach(x=>x.remove());$("message").value="";$("attendance").value="";$("companions").hidden=true;document.querySelectorAll(".answers button").forEach(b=>b.classList.remove("active"))};tick();setInterval(tick,60000);
-const musicToggle=document.getElementById("music-toggle"),siteMusic=document.getElementById("site-music");
-if(musicToggle&&siteMusic){musicToggle.addEventListener("click",async()=>{if(siteMusic.paused){try{await siteMusic.play();musicToggle.textContent="♫ MUSIQUE : ON";musicToggle.classList.add("active")}catch(err){console.warn("musique.mp3 indisponible ou lecture bloquée",err)}}else{siteMusic.pause();musicToggle.textContent="♫ MUSIQUE";musicToggle.classList.remove("active")}});}
+
+// Musique d'ambiance : tentative immédiate, puis nouvelle tentative au premier geste si le navigateur bloque l'autoplay sonore.
+const partyMusic=document.getElementById("party-music");
+if(partyMusic){
+  partyMusic.volume=0.55;
+  const startMusic=()=>partyMusic.play().catch(()=>{});
+  startMusic();
+  ["touchstart","pointerdown","keydown"].forEach(evt=>window.addEventListener(evt,startMusic,{once:true,passive:true}));
+}
